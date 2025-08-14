@@ -1,159 +1,200 @@
-import React from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 
 function App() {
+  const [isMusicOn, setIsMusicOn] = useState(false)
+  const audioRef = useRef(null)
+
+  useEffect(() => {
+    audioRef.current = new Audio('/audio.mp3')
+    audioRef.current.loop = true
+    audioRef.current.volume = 0.5
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause()
+        audioRef.current = null
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (isMusicOn) {
+      audio.play().catch(() => {})
+    } else {
+      audio.pause()
+      audio.currentTime = 0
+    }
+  }, [isMusicOn])
+
+  const navItems = useMemo(
+    () => [
+      { id: 'home', label: 'Home' },
+      { id: 'projects', label: 'Projects' },
+      { id: 'about', label: 'About' },
+      { id: 'contact', label: 'Contact' },
+    ],
+    []
+  )
+
+  const [activeId, setActiveId] = useState('home')
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActiveId(entry.target.id)
+        })
+      },
+      { rootMargin: '-40% 0px -50% 0px', threshold: 0.1 }
+    )
+
+    navItems.forEach(item => {
+      const el = document.getElementById(item.id)
+      if (el) observer.observe(el)
+    })
+    return () => observer.disconnect()
+  }, [navItems])
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      {/* Navigation */}
-      <nav className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-bold text-gray-900">Your Brand</h1>
-            </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                <a href="#home" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
-                <a href="#about" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
-                <a href="#services" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
-                <a href="#contact" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
-              </div>
+    <div className="min-h-screen bg-white text-gray-900">
+      <header className="sticky top-0 z-50 bg-white/70 backdrop-blur border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold">o</div>
+            <span className="text-sm tracking-widest">PORTFOLIO</span>
+          </div>
+          <nav className="hidden md:flex items-center gap-6">
+            {navItems.map(item => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className={`text-sm transition-colors ${
+                  activeId === item.id ? 'text-gray-900 font-semibold' : 'text-gray-500 hover:text-gray-900'
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <div className="flex items-center gap-3">
+            <span className="text-xs uppercase tracking-wider text-gray-500">Music</span>
+            <div className="flex items-center gap-2 text-sm">
+              <button
+                aria-pressed={isMusicOn}
+                onClick={() => setIsMusicOn(true)}
+                className={`px-2 py-1 rounded ${isMusicOn ? 'bg-gray-900 text-white' : 'text-gray-500 hover:text-gray-900'}`}
+              >
+                ON
+              </button>
+              <button
+                aria-pressed={!isMusicOn}
+                onClick={() => setIsMusicOn(false)}
+                className={`px-2 py-1 rounded ${!isMusicOn ? 'bg-gray-900 text-white' : 'text-gray-500 hover:text-gray-900'}`}
+              >
+                OFF
+              </button>
             </div>
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* Hero Section */}
-      <section id="home" className="relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-          <div className="text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Welcome to Your
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Amazing</span>
+      <main>
+        <section id="home" className="relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+            <p className="text-sm uppercase tracking-widest text-gray-500 mb-6">Bonjour</p>
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+              Your Name
               <br />
-              Landing Page
+              <span className="text-gray-500">digital</span>
+              <br />
+              designer
             </h1>
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Create something extraordinary with our modern React and Tailwind CSS landing page. 
-              Beautiful, responsive, and ready to impress your visitors.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
-                Get Started
-              </button>
-              <button className="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300">
-                Learn More
-              </button>
+            <div className="mt-10 flex items-center gap-6">
+              <a href="#projects" className="text-sm underline underline-offset-4 decoration-gray-300 hover:decoration-gray-900">Projects</a>
+              <a href="#about" className="text-sm underline underline-offset-4 decoration-gray-300 hover:decoration-gray-900">About me</a>
+              <a href="#contact" className="text-sm underline underline-offset-4 decoration-gray-300 hover:decoration-gray-900">Contact</a>
             </div>
           </div>
-        </div>
-        
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-200 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-purple-200 rounded-full opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-pink-200 rounded-full opacity-20 animate-pulse delay-500"></div>
-      </section>
+        </section>
 
-      {/* Features Section */}
-      <section id="about" className="py-20 bg-white">
+        <section id="projects" className="py-16 md:py-24 border-t border-gray-200 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-end justify-between mb-10">
+              <h2 className="text-3xl md:text-5xl font-bold">Projects</h2>
+              <span className="text-xs uppercase tracking-widest text-gray-500">Selected</span>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="group border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                  <div className="aspect-[16/10] bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                    <span className="text-gray-400">Project visual</span>
+                  </div>
+                  <div className="p-4 flex items-center justify-between">
+                    <div>
+                      <p className="text-sm uppercase tracking-widest text-gray-500">UI / UX DESIGN</p>
+                      <h3 className="text-lg font-semibold">Project Title</h3>
+                    </div>
+                    <span className="text-gray-400 group-hover:text-gray-900 transition-colors">→</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="py-16 md:py-24 border-t border-gray-200 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-3 gap-10 items-start">
+              <h2 className="text-3xl md:text-5xl font-bold col-span-1">I am</h2>
+              <div className="md:col-span-2 space-y-6">
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  A short introduction about you. Describe your design philosophy, specialties, and what sets your work apart. Keep it concise and impactful.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <p className="text-sm uppercase tracking-widest text-gray-500 mb-2">Expertise</p>
+                    <ul className="space-y-1 text-gray-800">
+                      <li>UI Design</li>
+                      <li>UX Design</li>
+                      <li>Art Direction</li>
+                      <li>Prototyping</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-sm uppercase tracking-widest text-gray-500 mb-2">Worked with</p>
+                    <ul className="space-y-1 text-gray-800">
+                      <li>Agency / Brand 1</li>
+                      <li>Agency / Brand 2</li>
+                      <li>Agency / Brand 3</li>
+                      <li>And more…</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="py-16 md:py-24 border-t border-gray-200 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid md:grid-cols-3 gap-10 items-start">
+              <h2 className="text-3xl md:text-5xl font-bold col-span-1">Contact</h2>
+              <div className="md:col-span-2 space-y-6">
+                <p className="text-lg text-gray-700">Don't be shy, feel free to mail me, and we'll discuss your needs.</p>
+                <div className="flex flex-col sm:flex-row gap-4 text-gray-800">
+                  <a className="underline underline-offset-4" href="mailto:hello@example.com">hello@example.com</a>
+                  <a className="underline underline-offset-4" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+                  <a className="underline underline-offset-4" href="#" target="_blank" rel="noreferrer">Behance</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="border-t border-gray-200 py-10 text-center text-sm text-gray-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Us?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We provide the best solutions for your digital needs with cutting-edge technology and exceptional service.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-lg transition-all duration-300">
-              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Lightning Fast</h3>
-              <p className="text-gray-600">Built with Vite for incredible speed and performance.</p>
-            </div>
-            
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 hover:shadow-lg transition-all duration-300">
-              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Beautiful Design</h3>
-              <p className="text-gray-600">Styled with Tailwind CSS for modern, responsive design.</p>
-            </div>
-            
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 hover:shadow-lg transition-all duration-300">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Reliable</h3>
-              <p className="text-gray-600">Built with React for stability and maintainability.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Get Started?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who have transformed their digital presence with us.
-          </p>
-          <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg">
-            Start Your Journey
-          </button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">Your Brand</h3>
-              <p className="text-gray-400">
-                Creating amazing digital experiences with modern technology.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#home" className="hover:text-white transition-colors">Home</a></li>
-                <li><a href="#about" className="hover:text-white transition-colors">About</a></li>
-                <li><a href="#services" className="hover:text-white transition-colors">Services</a></li>
-                <li><a href="#contact" className="hover:text-white transition-colors">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Services</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-white transition-colors">Web Development</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">UI/UX Design</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Consulting</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Support</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li>hello@yourbrand.com</li>
-                <li>+1 (555) 123-4567</li>
-                <li>123 Main St, City, State</li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Your Brand. All rights reserved.</p>
-          </div>
+          <p>Website by You — Music toggle expects <code>/public/audio.mp3</code></p>
         </div>
       </footer>
     </div>
@@ -161,3 +202,4 @@ function App() {
 }
 
 export default App
+
