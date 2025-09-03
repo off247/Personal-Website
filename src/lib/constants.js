@@ -9,7 +9,6 @@ export const NAV_ITEMS = [
   { id: 'contact', label: 'Contact' },
 ]
 
-// src/lib/constants.js
 export const CAPABILITIES = [
   {
     slug: "brand-identity",
@@ -31,10 +30,9 @@ export const CAPABILITIES = [
         ],
         summary:
           "A tactile, Windows-95-meets-Volvo system across print & web.",
-        caseStudy: "/case-studies/volvo-850.md", // optional
-        links: { live: "", repo: "" }, // optional
+        caseStudy: "/case-studies/volvo-850.md",
+        links: { live: "", repo: "" },
       },
-      // 2–5 projects per capability…
     ],
   },
   {

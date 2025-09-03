@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom'
 export default function ProjectsSection() {
   const projects = [
-    { title: "VISUAL STORYTELLING", category: "UI / UX DESIGN", image: "/projects/project6.png", link: "/projects/team-brand-wallpapers" },
-    { title: "SOCIAL MEDIA", category: "EXPERIENTIAL DESIGN", image: "/projects/project3.png", link: "/projects/project-two", comingSoon: true },
-    { title: "WEB & MOBILE APP", category: "FRONT-END WEB DEVELOPMENT", image: "/projects/project1.png", link: "/projects/project-three" },
-    { title: "EXPERIENTIAL DESIGN", category: "MOBILE EXPERIENCES", image: "/projects/interior_design.png", link: "/projects/project-four" },
+    { title: "VISUAL STORYTELLING", category: "Narrative • Photo/Video", image: "/projects/project6.png", link: "/visual-storytelling" },
+    { title: "SOCIAL MEDIA", category: "Campaigns • Motion", image: "/projects/project3.png", link: "/social-media", comingSoon: true },
+    { title: "WEB & MOBILE APP", category: "UX/UI • Front‑End", image: "/projects/project1.png", link: "/web-mobile" },
+    { title: "EXPERIENTIAL DESIGN", category: "Installations • Wayfinding", image: "/projects/interior_design.png", link: "/experiential-design" },
   ];
 
   return (
@@ -38,9 +39,9 @@ export default function ProjectsSection() {
                 </div>
               </div>
             ) : (
-              <a
+              <Link
                 key={index}
-                href={project.link}
+                to={project.link}
                 className="group border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden hover:shadow-lg hover:shadow-black/10 dark:hover:shadow-white/5 transition-shadow focus-within:ring-2 focus-within:ring-gray-900/10 dark:focus-within:ring-gray-100/10 block"
               >
                 <div className="aspect-[16/10] bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
@@ -57,7 +58,7 @@ export default function ProjectsSection() {
                   </div>
                   <span className="text-gray-400 group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">→</span>
                 </div>
-              </a>
+              </Link>
             )
           ))}
         </div>
