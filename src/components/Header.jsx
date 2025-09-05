@@ -1,5 +1,4 @@
 import ThemeToggle from './ThemeToggle'
-import logo from '../assets/gch_logo_black.svg'
 
 export default function Header({ navItems, activeId, theme, setTheme }) {
   return (
@@ -7,7 +6,7 @@ export default function Header({ navItems, activeId, theme, setTheme }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-1">
           <div className="w-10 h-10 flex items-center justify-center">
-            <img src={logo} alt="GCH Logo" className="w-9 h-9 dark:invert" />
+            <img src="src/assets/gch_logo_black.svg" alt="GCH Logo" className="w-9 h-9 dark:invert" />
           </div>
           <span className="text-sm tracking-widest">PORTFOLIO</span>
         </div>
@@ -22,7 +21,7 @@ export default function Header({ navItems, activeId, theme, setTheme }) {
                   : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100'
               }`}
             >
-              {item.label}
+              {item.label === 'Projects' ? 'Capabilities' : item.label}
             </a>
           ))}
         </nav>
