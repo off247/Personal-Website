@@ -1,6 +1,9 @@
 export const visualStorytelling = [
-    { title: 'Mini Doc: Roots & Routes', tags: ['video', 'story arc', 'editing'], thumb: '/assets/vs1.jpg', href: '/case/roots-routes' },
-    { title: 'Photo Series: Neon Nostalgia', tags: ['photo', 'color grading'], thumb: '/assets/vs2.jpg' },
+    { title: 'Client Presentation Decks', tags: ['video', 'story arc', 'editing'], thumb: '/assets/vs1.jpg' },
+    { title: 'SMUMN Pics?', tags: ['photo', 'color grading'], thumb: '/assets/vs2.jpg' },
+    { title: 'SMUMN Video?', tags: ['photo', 'color grading'], thumb: '/assets/vs2.jpg' },  
+    { title: 'Veritas?', tags: ['photo', 'color grading'], thumb: '/assets/vs2.jpg' },  
+    { title: 'Wedding?', tags: ['photo', 'color grading'], thumb: '/assets/vs2.jpg' },  
   ]
   
   export const socialMedia = [
