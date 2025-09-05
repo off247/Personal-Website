@@ -6,7 +6,7 @@ export default function Header({ navItems, activeId, theme, setTheme }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-1">
           <div className="w-10 h-10 flex items-center justify-center">
-            <img src="src/assets/gch_logo_black.svg" alt="GCH Logo" className="w-9 h-9 dark:invert" />
+            <img src="public/gch_logo_black.svg" alt="GCH Logo" className="w-9 h-9 dark:invert" />
           </div>
           <span className="text-sm tracking-widest">PORTFOLIO</span>
         </div>
