@@ -5,9 +5,9 @@ export default function Header({ navItems, activeId, theme, setTheme }) {
     <header className="sticky top-0 z-50 bg-white/70 dark:bg-gray-900/70 backdrop-blur border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-1">
-          <div className="w-10 h-10 flex items-center justify-center">
-            <img src="public/gch_logo_black.svg" alt="GCH Logo" className="w-9 h-9 dark:invert" />
-          </div>
+          <a href="/" className="w-10 h-10 flex items-center justify-center">
+            <img src="/gch_logo_black.svg" alt="GCH Logo" className="w-9 h-9 dark:invert" />
+          </a>
           <span className="text-sm tracking-widest">PORTFOLIO</span>
         </div>
         <nav className="hidden md:flex items-center gap-6" aria-label="Main navigation">
