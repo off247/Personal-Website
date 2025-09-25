@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { withBase } from '../lib/paths'
 
 export default function InlineBento({ regionId, selected, onClose }) {
   const bento = useMemo(() => {
@@ -35,7 +36,7 @@ export default function InlineBento({ regionId, selected, onClose }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 auto-rows-[200px] gap-4">
           <div className="col-span-1 sm:col-span-2 lg:col-span-2 row-span-2 rounded-xl overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900">
             {bento?.cover ? (
-              <img src={bento.cover} alt={bento.alt} className="h-full w-full object-cover" loading="lazy" />
+              <img src={withBase(bento.cover)} alt={bento.alt} className="h-full w-full object-cover" loading="lazy" />
             ) : (
               <div className="h-full w-full flex items-center justify-center">
                 <span className="text-zinc-500 dark:text-zinc-400 text-sm">
@@ -82,7 +83,7 @@ export default function InlineBento({ regionId, selected, onClose }) {
 
           <div className="col-span-1 row-span-1 rounded-xl overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 flex">
             {selected?.process?.[0] ? (
-              <img src={selected.process[0]} alt="Process" className="h-full w-full object-cover" loading="lazy" />
+              <img src={withBase(selected.process[0])} alt="Process" className="h-full w-full object-cover" loading="lazy" />
             ) : (
               <div className="m-auto text-sm text-zinc-500 dark:text-zinc-400 p-4 text-center">Optionally add <code>process[0]</code>.</div>
             )}
@@ -90,7 +91,7 @@ export default function InlineBento({ regionId, selected, onClose }) {
 
           <div className="col-span-1 row-span-1 rounded-xl overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 flex">
             {selected?.outcomes?.[0] ? (
-              <img src={selected.outcomes[0]} alt="Outcome" className="h-full w-full object-cover" loading="lazy" />
+              <img src={withBase(selected.outcomes[0])} alt="Outcome" className="h-full w-full object-cover" loading="lazy" />
             ) : (
               <div className="m-auto text-sm text-zinc-500 dark:text-zinc-400 p-4 text-center">Optionally add <code>outcomes[0]</code>.</div>
             )}

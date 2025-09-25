@@ -1,13 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import Header from './components/Header'
 import HomeSection from './sections/Home'
-import ProjectsSection from './sections/Projects'
+import ProjectsSection from './sections/Capabilities'
 import AboutSection from './sections/About'
-import GondolaSection from './sections/GondolaFeed'
 import ContactSection from './sections/Contact'
 import useActiveSection from './hooks/useActiveSection'
 import { NAV_ITEMS, ROOT_MARGIN } from './lib/constants'
-
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import VisualStorytelling from './pages/VisualStorytelling'
 import SocialMedia from './pages/SocialMedia'

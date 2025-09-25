@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { withBase } from '../lib/paths'
 
 export default function ProjectCard({ title, tags = [], thumb, href }) {
   const Wrapper = href?.startsWith('/') ? Link : 'a'
@@ -10,7 +11,7 @@ export default function ProjectCard({ title, tags = [], thumb, href }) {
     <div className="group rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden bg-white/60 dark:bg-gray-900/60 backdrop-blur hover:shadow-lg transition">
       {thumb && (
         <div className="aspect-[16/10] overflow-hidden">
-          <img src={thumb} alt="" className="w-full h-full object-cover group-hover:scale-[1.03] transition" />
+          <img src={withBase(thumb)} alt="" className="w-full h-full object-cover group-hover:scale-[1.03] transition" />
         </div>
       )}
       <div className="p-4">

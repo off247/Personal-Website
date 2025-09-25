@@ -1,5 +1,6 @@
 import ThemeToggle from './ThemeToggle'
 import { Link } from 'react-router-dom'
+import { withBase } from '../lib/paths'
 
 export default function Header({ navItems, activeId, theme, setTheme }) {
   return (
@@ -7,7 +8,7 @@ export default function Header({ navItems, activeId, theme, setTheme }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-1">
           <Link to="/" className="w-10 h-10 flex items-center justify-center" aria-label="Home">
-            <img src="/gch_logo_black.svg" alt="GCH Logo" className="w-9 h-9 dark:invert" />
+            <img src={withBase('/gch_logo_black.svg')} alt="GCH Logo" className="w-9 h-9 dark:invert" />
           </Link>
           <span className="text-sm tracking-widest">PORTFOLIO</span>
         </div>
