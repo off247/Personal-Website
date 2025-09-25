@@ -1,5 +1,24 @@
 export const visualStorytelling = [
-    { title: 'Client Presentation Decks', tags: ['video', 'story arc', 'editing'], thumb: '/assets/vs1.jpg' },
+  {
+    title: 'Detroit Red Wings — Personalized Membership Deck',
+    client: 'Fan-first renewals with automated personalization',
+    tags: ['UX', 'UI', 'Web'],
+    thumb: '/assets/redwings_250909.png',
+    cover: '/assets/redwings_250909.png',
+    alt: 'Detroit Red Wings hero',
+    summary: 'A premium, fan-first Digideck for the Red Wings memberships team that used API-driven personalization (name, plan, tenure) to make renewal outreach feel custom—improving the fan experience without extra work for sellers.',
+    stats: [
+    { label: 'Role', value: 'Lead Designer & Builder (Digideck)' },
+    { label: 'Scope', value: '20 interactive slides with on-enter motion; title/nav + interior templates' },
+    { label: 'Stack', value: 'React, Tailwind' }
+    ],
+    links: [
+    { label: 'Case Study', href: '/work/continuum' },
+    { label: 'Live Site', href: 'https://example.com' }
+    ],
+    process: ['/assets/web1-wireframe.jpg'],
+    outcomes: ['/assets/web1-final.jpg']
+    },
     { title: 'SMUMN Pics?', tags: ['photo', 'color grading'], thumb: '/assets/vs2.jpg' },
     { title: 'SMUMN Video?', tags: ['photo', 'color grading'], thumb: '/assets/vs2.jpg' },  
     { title: 'Veritas?', tags: ['photo', 'color grading'], thumb: '/assets/vs2.jpg' },  
