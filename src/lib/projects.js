@@ -75,7 +75,7 @@ export const capabilities = [
         title: 'Student Experience Video Series',
         description:
           'I created a series of videos that shared authentic student journeys, highlighting their stories and campus experiences. These videos were designed to build connection and inspire prospective students.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        image: '/assets/capabilities/student_experience_videos_251014.png',
         caseStudy: { href: '' } // Link /student-experience-video-series
       },
       {
@@ -139,7 +139,7 @@ export const capabilities = [
         title: 'Email Marketing for Live Events',
         description:
           'I collaborated with data teams to design game-day emails that combined logistics with fan engagement. Each campaign delivered essential information while promoting activations and merchandise.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        image: '/assets/capabilities/email_marketing_251013.png',
         caseStudy: { href: '' } // Link /email-marketing-for-live-events
       },
       {
