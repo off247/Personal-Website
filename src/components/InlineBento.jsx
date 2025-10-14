@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { withBase } from '../lib/paths'
 
 export default function InlineBento({ regionId, selected, onClose }) {
@@ -9,10 +9,28 @@ export default function InlineBento({ regionId, selected, onClose }) {
     const summary = selected.summary || selected.description || selected.blurb
     const stats = selected.stats || []
     const links = selected.links || (selected.url ? [{ label: 'Visit', href: selected.url }] : [])
-    return { cover, alt, summary, stats, links }
+
+    // Normalize optional carousel slides: accepts string URLs or { src, alt, caption }
+    let carouselSlides = []
+    const rawSlides = selected?.carousel?.slides
+    if (Array.isArray(rawSlides) && rawSlides.length > 0) {
+      carouselSlides = rawSlides.map((s, i) => {
+        if (typeof s === 'string') return { src: s, alt: `${selected.title || 'Slide'} ${i + 1}`, caption: '' }
+        const src = s.src || s.url || s.image || null
+        return {
+          src,
+          alt: s.alt || s.label || `${selected.title || 'Slide'} ${i + 1}`,
+          caption: s.caption || s.note || ''
+        }
+      }).filter(s => !!s.src)
+    }
+
+    return { cover, alt, summary, stats, links, carouselSlides }
   }, [selected])
 
   if (!selected) return null
+
+  const [slideIndex, setSlideIndex] = useState(0)
 
   return (
     <div id={regionId} className="col-span-full">
@@ -46,6 +64,58 @@ export default function InlineBento({ regionId, selected, onClose }) {
             )}
           </div>
 
+          {bento?.carouselSlides?.length ? (
+            <div className="col-span-1 sm:col-span-2 lg:col-span-2 row-span-2 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 bg-white/80 dark:bg-zinc-900/60 backdrop-blur-sm relative overflow-hidden">
+              {/* Slide image */}
+              <div className="h-full w-full">
+                <img
+                  src={withBase(bento.carouselSlides[slideIndex].src)}
+                  alt={bento.carouselSlides[slideIndex].alt}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+
+              {/* Caption bar */}
+              {(bento.carouselSlides[slideIndex].caption) && (
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3">
+                  <p className="text-xs text-white/90 leading-5">{bento.carouselSlides[slideIndex].caption}</p>
+                </div>
+              )}
+
+              {/* Controls */}
+              <div className="absolute inset-x-0 bottom-2 flex items-center justify-center gap-2">
+                <button
+                  type="button"
+                  aria-label="Previous slide"
+                  onClick={() => setSlideIndex((i) => (i - 1 + bento.carouselSlides.length) % bento.carouselSlides.length)}
+                  className="rounded-md border border-white/50 bg-black/30 text-white/90 backdrop-blur px-2 py-1 text-xs hover:bg-black/50"
+                >
+                  Prev
+                </button>
+                <div className="flex items-center gap-1">
+                  {bento.carouselSlides.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      aria-label={`Go to slide ${i + 1}`}
+                      onClick={() => setSlideIndex(i)}
+                      className={`h-2 w-2 rounded-full border ${i === slideIndex ? 'bg-white border-white' : 'bg-white/40 border-white/60'} hover:bg-white`}
+                    />
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  aria-label="Next slide"
+                  onClick={() => setSlideIndex((i) => (i + 1) % bento.carouselSlides.length)}
+                  className="rounded-md border border-white/50 bg-black/30 text-white/90 backdrop-blur px-2 py-1 text-xs hover:bg-black/50"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          ) : null}
+
           <div className="col-span-1 lg:col-span-2 row-span-1 rounded-xl border border-zinc-200/60 dark:border-zinc-700/60 p-5 bg-white dark:bg-zinc-900">
             <h4 className="font-medium mb-2">Story</h4>
             <p className="text-sm leading-6 text-zinc-700 dark:text-zinc-300">{bento?.summary}</p>
@@ -76,7 +146,7 @@ export default function InlineBento({ regionId, selected, onClose }) {
                   </a>
                 ))
               ) : (
-                <span className="text-sm text-zinc-500 dark:text-zinc-400">Add <code>links</code> or <code>url</code>.</span>
+                <span className="text-sm text-zinc-500 dark:text-zinc-400">Add <code>links</code> or a project <code>url</code>.</span>
               )}
             </div>
           </div>

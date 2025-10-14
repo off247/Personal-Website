@@ -25,9 +25,9 @@ export const visualStorytelling = [
       thumb: '/assets/capabilities/visual_storytelling_thumb250909.png',
       carousel: {
         slides: [
-          { src: 'https://placehold.co/1280x720?text=SMUMN+01', alt: 'SMUMN photo 1', caption: 'Campus life — placeholder', credit: 'Placeholder' },
-          { src: 'https://placehold.co/1280x720?text=SMUMN+02', alt: 'SMUMN photo 2', caption: 'Event coverage — placeholder', credit: 'Placeholder' },
-          { src: 'https://placehold.co/1280x720?text=SMUMN+03', alt: 'SMUMN photo 3', caption: 'Portrait series — placeholder', credit: 'Placeholder' }
+          { src: '/assets/capabilities/visual_storytelling_thumb250909.png', alt: 'SMUMN photo 1', caption: 'Campus life — placeholder', credit: 'Placeholder' },
+          { src: '/assets/capabilities/visual_storytelling_thumb250909.png', alt: 'SMUMN photo 2', caption: 'Event coverage — placeholder', credit: 'Placeholder' },
+          { src: '/assets/capabilities/visual_storytelling_thumb250909.png', alt: 'SMUMN photo 3', caption: 'Portrait series — placeholder', credit: 'Placeholder' }
         ],
         autoplay: true,
         intervalMs: 5000,
@@ -63,29 +63,34 @@ export const capabilities = [
     category: 'Multimedia • Communication',
     image: '/assets/capabilities/visual_storytelling_thumb250909.png',
     slides: [
-      {
-        title: 'Client Presentation Decks',
-        description:
-          'I designed engaging, on-brand presentation decks that balanced storytelling and visual clarity. These client-facing materials highlighted key narratives while ensuring complex information was easy to digest.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
-      },
+
       {
         title: 'Marketing & Event Photography',
         description:
           'From staged marketing shoots to live event coverage, I captured moments that elevated brand presence and connected with audiences. My photography focused on storytelling while delivering assets ready for campaigns and promotions.',
         image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        caseStudy: { href: '' } // Link /marketing-event-photography
       },
       {
         title: 'Student Experience Video Series',
         description:
           'I created a series of videos that shared authentic student journeys, highlighting their stories and campus experiences. These videos were designed to build connection and inspire prospective students.',
         image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        caseStudy: { href: '' } // Link /student-experience-video-series
       },
       {
         title: 'Cinematic Wedding Videos',
         description:
           "My wedding videography captured each couple's day from preparation through celebration, preserving authentic moments with a cinematic touch. The result was a timeless keepsake that blended artistry with storytelling.",
+        image: '/assets/capabilities/cinematic_wedding_videos_251008.png',
+        caseStudy: { href: '' } // Link /cinematic-wedding-videos
+      },
+      {
+        title: 'Client Presentation Decks',
+        description:
+          'I designed engaging, on-brand presentation decks that balanced storytelling and visual clarity. These client-facing materials highlighted key narratives while ensuring complex information was easy to digest.',
         image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        caseStudy: { href: '' } // Link /client-presentation-decks
       },
     ],
   },
@@ -98,19 +103,22 @@ export const capabilities = [
         title: 'Short-Form Video Editing',
         description:
           'I transformed existing footage into dynamic, engaging short-form content tailored for platforms like TikTok, Reels, and Shorts. These edits were optimized for audience engagement and drove viral reach.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        image: '/assets/capabilities/short_form_video_editing_251005.png',
+        caseStudy: { href: '' } // Link /short-form-video-editing
       },
       {
         title: 'Real-Time Highlight Clipping',
         description:
-          'Working in fast-paced sports environments, I clipped and published highlights in real time for immediate social sharing. This work maximized fan engagement and kept brands competitive in live digital spaces.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+          'Working in a fast-paced sport environment, I clipped and delivered highlights in real time for immediate social sharing. This work maximized fan engagement and kept the brand competitive in digital spaces.',
+        video: '/assets/capabilities/real-time_highlight_clipping_251008.mp4',
+        caseStudy: false,
       },
       {
         title: 'Game Day & Marketing Graphics',
         description:
           'I designed branded graphics that highlighted matchups, scores, and memorable moments while aligning with team identity. These assets supported both real-time updates and long-term marketing efforts.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        image: '/assets/capabilities/social_media_250909.png',
+        caseStudy: { href: '' } // Link /game-day-marketing-graphics
       },
     ],
   },
@@ -124,30 +132,36 @@ export const capabilities = [
         description:
           'Using the Rover platform, I built interactive in-app experiences that showcased team initiatives and merchandise. These designs enhanced fan engagement while driving awareness and conversions.',
         image: '/assets/capabilities/visual_storytelling_thumb250909.png',
-      },
-      {
-        title: 'Custom Fan Wallpapers',
-        description:
-          'I created branded phone wallpapers featuring players and seasonal identity elements. These graphics offered fans a personalized way to connect with their team while reinforcing brand consistency.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
-      },
+        caseStudy: { href: '/work/in-app-fan-engagement', label: 'Read case study' }
+      }, // Link /in-app-fan-engagement
+
       {
         title: 'Email Marketing for Live Events',
         description:
           'I collaborated with data teams to design game-day emails that combined logistics with fan engagement. Each campaign delivered essential information while promoting activations and merchandise.',
         image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        caseStudy: { href: '' } // Link /email-marketing-for-live-events
       },
       {
         title: 'Resource Hub Webpage',
         description:
           'I designed and developed a custom communications hub that streamlined access to key resources across organizations. The webpage provided a central point for sharing materials with external partners.',
         image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        caseStudy: { href: '' } // Link /resource-hub-webpage
       },
       {
         title: 'Single-Game Promotions Page',
         description:
           'I built a promotions hub that highlighted fan engagement opportunities for each home game. From custom thumbnails to page layout, the design enhanced visibility and accessibility of game-day offers.',
         image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        caseStudy: { href: '' } // Link /single-game-promotions-page
+      },
+      {
+        title: 'Custom Fan Wallpapers',
+        description:
+          'I created branded phone wallpapers featuring players and seasonal identity elements. These graphics offered fans a personalized way to connect with their team while reinforcing brand consistency.',
+        image: '/assets/capabilities/web_mobile_thumb250909.png',
+        caseStudy: { href: '' } // Link /custom-fan-wallpapers
       },
     ],
   },
@@ -160,13 +174,19 @@ export const capabilities = [
         title: 'Branded Wall Installation',
         description:
           'I designed and executed an in-store wall installation that reflected the client\'s brand identity and enhanced the retail atmosphere. The display served as both a focal point and a storytelling piece for customers.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        image: '/assets/capabilities/experiential_design_thumb250909.png',
+        caseStudy: { href: '' } // Link /branded-wall-installation
       },
       {
         title: 'In-Store Wayfinding Signage',
         description:
           'I created signage systems to help customers easily navigate product categories and store sections. These designs balanced clarity, functionality, and brand consistency to improve the shopping experience.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        carousel: [
+          '/assets/capabilities/wayfinding_250928.png',
+          '/assets/capabilities/wayfinding_251008.png',
+          '/assets/capabilities/wayfinding_251007.png'
+        ],
+        caseStudy: { href: '' } // Link /in-store-wayfinding-signage
       },
     ],
   },
