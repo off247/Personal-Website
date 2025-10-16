@@ -68,7 +68,7 @@ export const capabilities = [
         title: 'Marketing & Event Photography',
         description:
           'From staged marketing shoots to live event coverage, I captured moments that elevated brand presence and connected with audiences. My photography focused on storytelling while delivering assets ready for campaigns and promotions.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
+        image: '/assets/capabilities/marketing_photos_thumbnail_251015.png',
         caseStudy: { href: '' } // Link /marketing-event-photography
       },
       {
@@ -131,8 +131,8 @@ export const capabilities = [
         title: 'In-App Fan Engagement Experience Design',
         description:
           'Using the Rover platform, I built interactive in-app experiences that showcased team initiatives and merchandise. These designs enhanced fan engagement while driving awareness and conversions.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
-        caseStudy: { href: '/work/in-app-fan-engagement', label: 'Read case study' }
+        image: '/assets/capabilities/in-app_fan_engagement_251016.png',
+        caseStudy: { href: '' }
       }, // Link /in-app-fan-engagement
 
       {
@@ -143,18 +143,11 @@ export const capabilities = [
         caseStudy: { href: '' } // Link /email-marketing-for-live-events
       },
       {
-        title: 'Resource Hub Webpage',
+        title: 'Team Communication & Promotions Webpages',
         description:
-          'I designed and developed a custom communications hub that streamlined access to key resources across organizations. The webpage provided a central point for sharing materials with external partners.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
-        caseStudy: { href: '' } // Link /resource-hub-webpage
-      },
-      {
-        title: 'Single-Game Promotions Page',
-        description:
-          'I built a promotions hub that highlighted fan engagement opportunities for each home game. From custom thumbnails to page layout, the design enhanced visibility and accessibility of game-day offers.',
-        image: '/assets/capabilities/visual_storytelling_thumb250909.png',
-        caseStudy: { href: '' } // Link /single-game-promotions-page
+          'I developed and designed web pages that streamlined communication and highlighted fan engagement. These webpages supported cross-team collaboration, improved access to key resources, and promoted game-day activations through cohesive design systems.',
+        image: '/assets/capabilities/web_thumbnail_251015.png',
+        caseStudy: { href: '' } // Link /team-communication-promotions-webpages
       },
       {
         title: 'Custom Fan Wallpapers',
@@ -186,8 +179,7 @@ export const capabilities = [
           '/assets/capabilities/wayfinding_251008.png',
           '/assets/capabilities/wayfinding_251007.png'
         ],
-        caseStudy: { href: '' } // Link /in-store-wayfinding-signage
-      },
+        caseStudy: false,      },
     ],
   },
 ]

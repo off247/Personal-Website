@@ -29,8 +29,33 @@ export default function ProjectsSection() {
           // Build canonical path to the work page (matches <Route path="/work/<slug>")
           const path = project?.path || `/work/${slug}`
 
-          const caseStudyRaw = slide.caseStudy ?? { href: path, label: 'View case study' }
-          const caseStudy = SHOW_CASE_STUDY ? caseStudyRaw : undefined
+          const caseStudy = (() => {
+            if (!SHOW_CASE_STUDY) return undefined
+            if (slide.caseStudy === false) return undefined
+
+            const base = typeof slide.caseStudy === 'object' && slide.caseStudy !== null ? slide.caseStudy : {}
+
+            let hrefCandidate
+            if ('href' in base) {
+              hrefCandidate = base.href
+            } else if (slide.caseStudy === undefined) {
+              hrefCandidate = project?.path || path
+            }
+
+            const normalizedHref = typeof hrefCandidate === 'string' ? hrefCandidate.trim() : hrefCandidate
+            const hasHref = typeof normalizedHref === 'string' ? normalizedHref.length > 0 : Boolean(normalizedHref)
+            const comingSoon = Boolean(base.comingSoon) || !hasHref
+            const label = comingSoon
+              ? base.comingSoonLabel || base.label || 'Details coming soon'
+              : base.label || 'View case study'
+
+            return {
+              ...base,
+              href: comingSoon ? undefined : normalizedHref,
+              label,
+              comingSoon,
+            }
+          })()
 
           return {
             ...slide,
@@ -406,14 +431,24 @@ export default function ProjectsSection() {
                                     {s.description}
                                   </p>
                                   {/* CTA row (optional) */}
-                                  {s.caseStudy?.href && (
+                                  {s.caseStudy && (
                                     <div className="mt-auto pt-4 flex items-center gap-3">
-                                      <a
-                                        href={s.caseStudy.href}
-                                        className="inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-800"
-                                      >
-                                        {s.caseStudy.label || 'View case study'}
-                                      </a>
+                                      {s.caseStudy.comingSoon ? (
+                                        <button
+                                          type="button"
+                                          disabled
+                                          className="inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 text-sm text-gray-500 dark:text-gray-400 cursor-not-allowed"
+                                        >
+                                          {s.caseStudy.label}
+                                        </button>
+                                      ) : s.caseStudy.href ? (
+                                        <a
+                                          href={s.caseStudy.href}
+                                          className="inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-800"
+                                        >
+                                          {s.caseStudy.label || 'View case study'}
+                                        </a>
+                                      ) : null}
                                     </div>
                                   )}
                                 </div>
