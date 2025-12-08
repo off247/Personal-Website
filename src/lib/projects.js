@@ -68,9 +68,15 @@ export const capabilities = [
         title: 'Marketing & Event Photography',
         description:
           'From staged marketing shoots to live event coverage, I captured moments that elevated brand presence and connected with audiences. My photography focused on storytelling while delivering assets ready for campaigns and promotions.',
-        image: '/assets/capabilities/marketing_photos_thumbnail_251015.png',
-        caseStudy: { href: '' } // Link /marketing-event-photography
-      },
+       carousel: [
+          '/assets/capabilities/marketing_photos_thumbnail_251015.png',
+          '/assets/capabilities/marketing_5_photos_thumbnail_251015.png',
+          '/assets/capabilities/marketing_4_photos_thumbnail_251015.png',
+          '/assets/capabilities/marketing_3_photos_thumbnail_251015.png',
+          '/assets/capabilities/marketing_2_photos_thumbnail_251015.png',
+          '/assets/capabilities/marketing_1_photos_thumbnail_251015.png',
+        ],
+        caseStudy: false,      },
       {
         title: 'Student Experience Video Series',
         description:
