@@ -170,6 +170,13 @@ export const capabilities = [
     image: '/assets/capabilities/experiential_design_thumb250909.png',
     slides: [
       {
+        title: 'Red Wing Shoes - Environmental Branding',
+        description:
+          'I designed a series of large-format, freestanding banners for Red Wing Shoes\' sales meeting, transforming brand photography and messaging into an immersive internal brand experience. The installation was created to reinforce Red Wing\'s heritage, craftmanship, and product story in a physical environment where teams could engage with the brand beyond screens.',
+        image: '/assets/capabilities/redwing_251219.png',
+        caseStudy: { href: '' } // Link /branded-wall-installation
+      },
+      {
         title: 'Branded Wall Installation',
         description:
           'I designed and executed an in-store wall installation that reflected the client\'s brand identity and enhanced the retail atmosphere. The display served as both a focal point and a storytelling piece for customers.',
@@ -186,6 +193,7 @@ export const capabilities = [
           '/assets/capabilities/wayfinding_251007.png'
         ],
         caseStudy: false,      },
+
     ],
   },
 ]
