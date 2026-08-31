@@ -15,7 +15,7 @@ export default function WorkProjectTemplate({ slug }) {
     )
   }
 
-  const { title, description, image, capability } = project
+  const { title, description, image, video, capability } = project
   const summary = description || 'Detailed case study coming soon.'
 
   return (
@@ -24,7 +24,19 @@ export default function WorkProjectTemplate({ slug }) {
         <p className="text-base leading-7">
           Full case study in progress—get in touch if you'd like a deeper walkthrough or supporting materials.
         </p>
-        {image && (
+        {video && (
+          <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900">
+            <video
+              src={withBase(video)}
+              controls
+              className="w-full h-auto"
+              playsInline
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        )}
+        {image && !video && (
           <div className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900">
             <img src={withBase(image)} alt={title} className="w-full h-auto object-cover" loading="lazy" />
           </div>

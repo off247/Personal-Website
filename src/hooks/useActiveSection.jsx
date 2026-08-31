@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 export default function useActiveSection(navItems, rootMargin) {
-  const [activeId, setActiveId] = useState('home')
+  const [activeId, setActiveId] = useState('about')
 
   useEffect(() => {
     const observer = new IntersectionObserver(

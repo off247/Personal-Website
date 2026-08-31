@@ -1,12 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import Header from './components/Header'
-import HomeSection from './sections/Home'
 import ProjectsSection from './sections/Capabilities'
 import AboutSection from './sections/About'
 import ContactSection from './sections/Contact'
 import useActiveSection from './hooks/useActiveSection'
 import { NAV_ITEMS, ROOT_MARGIN } from './lib/constants'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import VisualStorytelling from './pages/VisualStorytelling'
 import SocialMedia from './pages/SocialMedia'
 import WebMobile from './pages/WebMobile'
@@ -51,20 +50,55 @@ function App() {
   }, [theme])
 
   const navItems = useMemo(() => NAV_ITEMS, [])
-  const activeId = useActiveSection(navItems, ROOT_MARGIN)
+  const scrollActiveId = useActiveSection(navItems, ROOT_MARGIN)
 
   return (
     <BrowserRouter>
-      <div className="scroll-smooth min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-        <Header navItems={navItems} activeId={activeId} theme={theme} setTheme={setTheme} />
+      <AppContent
+        navItems={navItems}
+        scrollActiveId={scrollActiveId}
+        theme={theme}
+        setTheme={setTheme}
+      />
+    </BrowserRouter>
+  )
+}
+
+function AppContent({ navItems, scrollActiveId, theme, setTheme }) {
+  const location = useLocation()
+  
+  // Check if we're on a work project page - if so, make "projects" active
+  const activeId = useMemo(() => {
+    if (location.pathname.startsWith('/work/')) {
+      return 'projects'
+    }
+    return scrollActiveId
+  }, [location.pathname, scrollActiveId])
+
+  // Handle hash scrolling when navigating to home page with hash
+  useEffect(() => {
+    if (location.pathname === '/' && location.hash) {
+      const sectionId = location.hash.substring(1) // Remove the '#'
+      const element = document.getElementById(sectionId)
+      if (element) {
+        // Small delay to ensure DOM is ready
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 100)
+      }
+    }
+  }, [location.pathname, location.hash])
+
+  return (
+    <div className="scroll-smooth min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+      <Header navItems={navItems} activeId={activeId} theme={theme} setTheme={setTheme} />
         <main>
           <Routes>
-            {/* Home (existing one-page sections) */}
+            {/* Existing one-page sections */}
             <Route
               path="/"
               element={
                 <>
-                  <HomeSection />
                   <AboutSection />
                   <ProjectsSection />
                   <ContactSection />
@@ -102,8 +136,7 @@ function App() {
           </div>
         </footer>
       </div>
-    </BrowserRouter>
-  )
-}
+    )
+  }
 
 export default App

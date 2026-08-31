@@ -63,7 +63,13 @@ export const capabilities = [
     category: 'Multimedia • Communication',
     image: '/assets/capabilities/visual_storytelling_thumb250909.png',
     slides: [
-
+      {
+        title: 'Student Experience Video Series',
+        description:
+          'I created a series of videos that shared authentic student journeys, highlighting their stories and campus experiences. These videos were designed to build connection and inspire prospective students.',
+        image: '/assets/capabilities/student_experience_videos_251014.png',
+        caseStudy: { href: '/work/student-experience-video-series' } // Link /student-experience-video-series
+      },
       {
         title: 'Marketing & Event Photography',
         description:
@@ -77,13 +83,7 @@ export const capabilities = [
           '/assets/capabilities/marketing_1_photos_thumbnail_251015.png',
         ],
         caseStudy: false,      },
-      {
-        title: 'Student Experience Video Series',
-        description:
-          'I created a series of videos that shared authentic student journeys, highlighting their stories and campus experiences. These videos were designed to build connection and inspire prospective students.',
-        image: '/assets/capabilities/student_experience_videos_251014.png',
-        caseStudy: { href: '' } // Link /student-experience-video-series
-      },
+
       {
         title: 'Cinematic Wedding Videos',
         description:

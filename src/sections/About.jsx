@@ -1,6 +1,20 @@
+import RotatingText from '../components/RotatingText'
+
 export default function AboutSection() {
-    return (
-      <section id="about" className="py-16 md:py-24 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 scroll-mt-24">
+  return (
+    <>
+      <section id="about" className="relative overflow-hidden scroll-mt-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+            grace catherine homer
+            <br />
+            <RotatingText texts={['creative', 'thoughtful', 'curious',  'innovative']} interval={1200} finalDelay={1200} />
+            <br />
+            designer
+          </h1>
+        </div>
+      </section>
+      <section className="py-16 md:py-24 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-10 items-start">
             <h2 className="text-3xl md:text-5xl font-bold col-span-1">elevator pitch</h2>
@@ -33,5 +47,6 @@ export default function AboutSection() {
           </div>
         </div>
       </section>
-    )
-  }
+    </>
+  )
+}

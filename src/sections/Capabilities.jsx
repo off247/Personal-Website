@@ -308,27 +308,10 @@ export default function ProjectsSection() {
                 >
                   <div className="overflow-hidden">
                     {/* Carousel */}
-                    <div className="p-4 md:p-6 flex flex-col gap-4 md:gap-6">
+                    <div className="px-6 md:px-8 py-4 md:py-6 flex flex-col gap-4 md:gap-6 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                       <div className="flex items-center justify-between">
                         <h4 className="text-base md:text-lg font-semibold">Previous Projects</h4>
-                        <div className="flex items-center gap-2">
-                          <button
-                            type="button"
-                            onClick={prev}
-                            className="h-9 w-9 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
-                            aria-label="Previous"
-                          >
-                            ‹
-                          </button>
-                          <button
-                            type="button"
-                            onClick={next}
-                            className="h-9 w-9 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800"
-                            aria-label="Next"
-                          >
-                            ›
-                          </button>
-                        </div>
+
                       </div>
 
                       {/* Slide viewport */}
@@ -336,6 +319,28 @@ export default function ProjectsSection() {
                         className="relative"
                         ref={viewportRef}
                       >
+                        {/* Left Arrow */}
+                        {activeSlides.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={prev}
+                            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 h-10 w-10 rounded-full bg-white dark:bg-gray-900 border-1 border-gray-300 dark:border-gray-700 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-110 transition-all flex items-center justify-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900/20 dark:focus-visible:ring-gray-100/20"
+                            aria-label="Previous project"
+                          >
+                            <span className="text-2xl font-bold leading-none">‹</span>
+                          </button>
+                        )}
+                        {/* Right Arrow */}
+                        {activeSlides.length > 1 && (
+                          <button
+                            type="button"
+                            onClick={next}
+                            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-20 h-10 w-10 rounded-full bg-white dark:bg-gray-900 border-1 border-gray-300 dark:border-gray-700 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-800 hover:scale-110 transition-all flex items-center justify-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900/20 dark:focus-visible:ring-gray-100/20"
+                            aria-label="Next project"
+                          >
+                            <span className="text-2xl font-bold leading-none">›</span>
+                          </button>
+                        )}
                         {activeSlides.map((s, i) => {
                           const activeCarouselIndex = carouselIndices[i] ?? 0
 
@@ -349,10 +354,11 @@ export default function ProjectsSection() {
                                 ref={(el) => {
                                   slideRefs.current[i] = el
                                 }}
-                                className="grid md:grid-cols-5 gap-4 md:gap-6 items-stretch"
+                                className="bg-white dark:bg-gray-900 rounded-lg p-4 md:p-6 border border-gray-200 dark:border-gray-700"
                               >
-                                {/* media block inside the slide card */}
-                                <div className="md:col-span-3 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 aspect-[16/10] relative">
+                                <div className="grid md:grid-cols-5 gap-4 md:gap-6 items-stretch">
+                                  {/* media block inside the slide card */}
+                                  <div className="md:col-span-3 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 aspect-[16/10] relative">
                                   {Array.isArray(s.carousel) && s.carousel.length > 0 ? (
                                     <div className="relative h-full w-full">
                                       {s.carousel.map((item, imgIdx) => {
@@ -444,6 +450,8 @@ export default function ProjectsSection() {
                                       ) : s.caseStudy.href ? (
                                         <a
                                           href={s.caseStudy.href}
+                                          target="_blank"
+                                          rel="noopener noreferrer"
                                           className="inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-700 px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-800"
                                         >
                                           {s.caseStudy.label || 'View case study'}
@@ -451,6 +459,7 @@ export default function ProjectsSection() {
                                       ) : null}
                                     </div>
                                   )}
+                                </div>
                                 </div>
                               </div>
                             </div>
