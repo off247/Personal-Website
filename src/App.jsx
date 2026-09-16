@@ -19,10 +19,10 @@ import GameDayMarketingGraphics from './pages/work/GameDayMarketingGraphics'
 import InAppFanEngagement from './pages/work/InAppFanEngagement'
 import CustomFanWallpapers from './pages/work/CustomFanWallpapers'
 import EmailMarketingForLiveEvents from './pages/work/EmailMarketingForLiveEvents'
-import ResourceHubWebpage from './pages/work/ResourceHubWebpage'
-import SingleGamePromotionsPage from './pages/work/SingleGamePromotionsPage'
 import BrandedWallInstallation from './pages/work/BrandedWallInstallation'
 import WayfindingSignage from './pages/work/WayfindingSignage'
+import TeamCommunicationPromotionsWebpages from './pages/work/TeamCommunicationPromotionsWebpages'
+import RedWingShoesEnvironmentalBranding from './pages/work/RedWingShoesEnvironmentalBranding'
 
 
 function App() {
@@ -124,10 +124,10 @@ function AppContent({ navItems, scrollActiveId, theme, setTheme }) {
             <Route path="/work/in-app-fan-engagement" element={<InAppFanEngagement />} />
             <Route path="/work/custom-fan-wallpapers" element={<CustomFanWallpapers />} />
             <Route path="/work/email-marketing-for-live-events" element={<EmailMarketingForLiveEvents />} />
-            <Route path="/work/resource-hub-webpage" element={<ResourceHubWebpage />} />
-            <Route path="/work/single-game-promotions-page" element={<SingleGamePromotionsPage />} />
             <Route path="/work/branded-wall-installation" element={<BrandedWallInstallation />} />
             <Route path="/work/wayfinding-signage" element={<WayfindingSignage />} />
+            <Route path="/work/team-communication-promotions-webpages" element={<TeamCommunicationPromotionsWebpages />} />
+            <Route path="/work/red-wing-shoes-environmental-branding" element={<RedWingShoesEnvironmentalBranding />} />
           </Routes>
         </main>
         <footer className="border-t border-gray-200 dark:border-gray-800 py-10 text-center text-sm text-gray-500 dark:text-gray-400">

@@ -11,10 +11,10 @@ const slugMap = {
   'In-App Fan Engagement Experience Design': 'in-app-fan-engagement',
   'Custom Fan Wallpapers': 'custom-fan-wallpapers',
   'Email Marketing for Live Events': 'email-marketing-for-live-events',
-  'Resource Hub Webpage': 'resource-hub-webpage',
-  'Single-Game Promotions Page': 'single-game-promotions-page',
   'Branded Wall Installation': 'branded-wall-installation',
-  'In-Store Wayfinding Signage': 'wayfinding-signage'
+  'In-Store Wayfinding Signage': 'wayfinding-signage',
+  'Team Communication & Promotions Webpages': 'team-communication-promotions-webpages',
+  'Red Wing Shoes - Environmental Branding': 'red-wing-shoes-environmental-branding'
 }
 
 const fallbackSlugify = (title) =>
@@ -32,21 +32,20 @@ const makeSlug = (title) => {
 
 export const workProjects = capabilities.flatMap((capability) => {
   const slides = capability.slides ?? []
-  return slides
-    .filter((slide) => slide.caseStudy !== false)
-    .map((slide) => {
-      const slug = makeSlug(slide.title)
-      return {
-        capability: capability.title,
-        category: capability.category,
-        slug,
-        path: `/work/${slug}`,
-        title: slide.title,
-        description: slide.description || '',
-        image: slide.image || slide.cover || null,
-        cover: slide.cover || slide.image || null,
-      }
-    })
+  return slides.map((slide) => {
+    const slug = makeSlug(slide.title)
+    const fallbackImage = slide.carousel?.[0] || null
+    return {
+      capability: capability.title,
+      category: capability.category,
+      slug,
+      path: `/work/${slug}`,
+      title: slide.title,
+      description: slide.description || '',
+      image: slide.image || slide.cover || fallbackImage,
+      cover: slide.cover || slide.image || fallbackImage,
+    }
+  })
 })
 
 const bySlug = new Map(workProjects.map((project) => [project.slug, project]))
