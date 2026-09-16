@@ -15,6 +15,7 @@ import MarketingEventPhotography from './pages/work/MarketingEventPhotography'
 import StudentExperienceVideoSeries from './pages/work/StudentExperienceVideoSeries'
 import CinematicWeddingVideos from './pages/work/CinematicWeddingVideos'
 import ShortFormVideoEditing from './pages/work/ShortFormVideoEditing'
+import RealTimeHighlightClipping from './pages/work/RealTimeHighlightClipping'
 import GameDayMarketingGraphics from './pages/work/GameDayMarketingGraphics'
 import InAppFanEngagement from './pages/work/InAppFanEngagement'
 import CustomFanWallpapers from './pages/work/CustomFanWallpapers'
@@ -120,6 +121,7 @@ function AppContent({ navItems, scrollActiveId, theme, setTheme }) {
             <Route path="/work/student-experience-video-series" element={<StudentExperienceVideoSeries />} />
             <Route path="/work/cinematic-wedding-videos" element={<CinematicWeddingVideos />} />
             <Route path="/work/short-form-video-editing" element={<ShortFormVideoEditing />} />
+            <Route path="/work/real-time-highlight-clipping" element={<RealTimeHighlightClipping />} />
             <Route path="/work/game-day-marketing-graphics" element={<GameDayMarketingGraphics />} />
             <Route path="/work/in-app-fan-engagement" element={<InAppFanEngagement />} />
             <Route path="/work/custom-fan-wallpapers" element={<CustomFanWallpapers />} />

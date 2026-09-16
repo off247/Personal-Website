@@ -44,6 +44,7 @@ export const workProjects = capabilities.flatMap((capability) => {
       description: slide.description || '',
       image: slide.image || slide.cover || fallbackImage,
       cover: slide.cover || slide.image || fallbackImage,
+      video: slide.video || null,
     }
   })
 })
